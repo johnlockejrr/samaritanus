@@ -1,0 +1,3 @@
+# Optional runtime extra: enables the shared Redis rate-limiter backend (REDIS_URL).
+# Install only if you set REDIS_URL. The app runs fine without it (in-memory limiter).
+redis>=5,<7

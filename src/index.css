@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Narkis Classic";
+  src: url("/fonts/NarkisClassic-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Narkis Classic";
+  src: url("/fonts/NarkisClassic-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Noto Sans", "Segoe UI", sans-serif;
+  /* Dicta verse face (Masterfont Narkis Classic) — personal use only */
+  --font-hebrew: "Narkis Classic", "Noto Sans Hebrew", sans-serif;
+  --color-page: #ebf1fe;
+  --color-ink: #1c2638;
+}
+
+html {
+  background: var(--color-page);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+.font-hebrew {
+  font-family: var(--font-hebrew);
+}
+
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  width: min(36rem, calc(100% - 2rem));
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  border: 0;
+  padding: 0;
+  background: #fff;
+  color: var(--color-ink);
+  border-radius: 1rem;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.22);
+}
+
+dialog::backdrop {
+  background: rgba(15, 23, 42, 0.45);
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}

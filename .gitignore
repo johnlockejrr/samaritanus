@@ -1,0 +1,47 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+.DS_Store
+.ruff_cache/
+
+# built search index and the morphology download used to build it
+data/samaritanus.db
+data/samaritanus.db-*
+data/wlc/
+data/strongs/
+
+# release packages
+release/
+
+# desktop (Tauri) build artifacts; index is copied into resources for packaging
+rust-app/target/
+rust-app/dist/
+rust-app/node_modules/
+rust-app/src-tauri/target/
+rust-app/src-tauri/gen/
+rust-app/src-tauri/resources/samaritanus.db
+rust-app/src-tauri/resources/samaritanus.db-*
+# workspace lockfile is rust-app/Cargo.lock
+rust-app/src-tauri/Cargo.lock
+
+tests/.tmp/
+
+# local plugin / agent / editor state (not for the public repo)
+.remember/
+.cursor/
+AGENTS.md
+.claude/
+*.code-workspace
+
+# local diagnostics
+docker-error.txt

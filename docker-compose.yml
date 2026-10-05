@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    environment:
+      SEARCH_DB: /app/data/samaritanus.db
+      STATIC_DIR: /app/dist
+      PORT: "8000"
+      TRUST_PROXY: ${TRUST_PROXY:-false}
+      RATE_LIMIT_PER_MINUTE: ${RATE_LIMIT_PER_MINUTE:-60}
+      CORS_ALLOW_ORIGINS: ${CORS_ALLOW_ORIGINS:-}
+      CORS_ALLOW_CREDENTIALS: ${CORS_ALLOW_CREDENTIALS:-false}
+      API_KEY: ${API_KEY:-}
+      DOCS_ENABLED: ${DOCS_ENABLED:-false}
+      SEARCH_CACHE_MAX_AGE: ${SEARCH_CACHE_MAX_AGE:-60}
+      REDIS_URL: ${REDIS_URL:-}
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    restart: unless-stopped
