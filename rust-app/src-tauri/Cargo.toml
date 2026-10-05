@@ -1,6 +1,6 @@
 [package]
 name = "rust-app"
-version = "0.2.0"
+version = "0.2.2"
 description = "Samaritan Torah Search — desktop (Tauri)"
 authors = ["Samaritan Torah Search"]
 edition = "2021"

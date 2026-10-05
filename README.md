@@ -1,6 +1,6 @@
 # Samaritan Torah Search
 
-**v0.2** — search the Samaritan Pentateuch (5,841 verses) in the browser.
+**v0.2.2** — search the Samaritan Pentateuch (5,841 verses) in the browser.
 
 One process serves the page and the API. The index is one SQLite file with four
 match modes: **Root** (same Strong's family: inflections and sole-source
@@ -91,11 +91,11 @@ Push a version tag to build everything and attach it under
 
 ```bash
 # bump version in package.json / rust-app package + tauri.conf if needed, then:
-git tag v0.2.1
-git push origin v0.2.1
+git tag v0.2.2
+git push origin v0.2.2
 ```
 
-Or: Actions → **Release** → Run workflow → enter `v0.2.1`.
+Or: Actions → **Release** → Run workflow → enter `v0.2.2`.
 
 Each release includes the web deploy zip, Windows NSIS/MSI, Linux `.deb`/AppImage,
 plus GitHub’s automatic Source code zip/tar.gz.

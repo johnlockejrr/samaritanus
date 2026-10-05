@@ -1,6 +1,6 @@
 [package]
 name = "search-engine"
-version = "0.2.0"
+version = "0.2.2"
 edition = "2021"
 description = "Samaritan Torah Search index (Rust port of search.py)"
 
