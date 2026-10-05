@@ -21,16 +21,17 @@ Open http://127.0.0.1:5173. The repo includes a prebuilt
 `python3 scripts/ensure_index.py --force` to regenerate from OSHB/Strong's).
 Ctrl-C stops both processes. `npm start` runs the same script.
 
+If `/api/health` is `degraded`, run `python3 scripts/ensure_index.py`. If ports
+clash, stop the other process or set `PORT` for the API (UI stays on 5173).
+
 ## Production
 
 ```bash
 docker compose up --build
 ```
 
-The image builds the index and the SPA, then serves both on
-http://localhost:8000. Guides: [QUICKSTART.md](QUICKSTART.md),
-[DOCKER_HOWTO.md](DOCKER_HOWTO.md), [PRODUCTION_HOWTO.md](PRODUCTION_HOWTO.md),
-[TRAEFIK_HOWTO.md](TRAEFIK_HOWTO.md).
+Serves the SPA and API on http://localhost:8000. For Nginx/Traefik, env knobs,
+and bare-metal zip deploys, see [DEPLOY.md](DEPLOY.md).
 
 ## Search API
 
@@ -80,10 +81,8 @@ derivation links. A small Samaritan orthography table maps forms such as
 ./scripts/make_release.sh
 ```
 
-Writes `release/samaritan-torah-search-<version>.zip` with the built SPA, Python
-API, and prebuilt index. Unzip on the server, `pip install -r requirements.txt`,
-then `./start.sh`. See `DEPLOY.md` inside the zip. Options: `--skip-frontend`,
-`--force-index`.
+Writes `release/samaritan-torah-search-<version>.zip`. Details: [DEPLOY.md](DEPLOY.md).
+Options: `--skip-frontend`, `--force-index`.
 
 ## GitHub Releases (web zip + Windows + Linux)
 

@@ -1,20 +1,69 @@
-# Production (v0.2) — Traefik
+# Deploy (production)
 
-The app container serves the API and the web UI on port 8000. Traefik terminates
-TLS and routes to it. Settings live in `.env`.
+One container serves the API and the built web UI on port 8000.
 
-## 1. Environment
+```bash
+docker compose up -d --build
+curl -fsS localhost:8000/api/health
+```
+
+Open http://localhost:8000. Change the published port with `APP_PORT` in `.env`
+(see [`.env.example`](.env.example)). The process runs as a non-root user; the
+index is baked into the image.
+
+Useful settings behind a reverse proxy:
+
+```text
+TRUST_PROXY=true
+RATE_LIMIT_PER_MINUTE=60
+SEARCH_CACHE_MAX_AGE=60
+DOCS_ENABLED=false
+APP_PORT=8000
+```
+
+`TRUST_PROXY=true` makes the rate limiter use the first `X-Forwarded-For` hop —
+set it only when the proxy is the only caller that can reach the container.
+
+Optional API key on `/api/*` (health stays open): set `API_KEY` and send
+`X-API-Key`. Optional shared rate limit across workers: install
+`requirements-redis.txt` in a custom image and set `REDIS_URL`.
+
+Bare-metal (no Docker): `./scripts/make_release.sh`, unzip on the server,
+`pip install -r requirements.txt`, then `./start.sh`.
+
+## Nginx + TLS
+
+```nginx
+server {
+    listen 443 ssl;
+    server_name search.example.org;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+}
+```
+
+Bind the container to localhost when Nginx is on the same host:
+
+```text
+APP_PORT=127.0.0.1:8000
+```
+
+Compose maps `${APP_PORT:-8000}:8000`, so `127.0.0.1:8000` binds only on the host.
+
+## Traefik
 
 ```text
 DOMAIN=search.example.org
 LE_EMAIL=admin@example.org
-APP_PORT=8000
 TRUST_PROXY=true
 RATE_LIMIT_PER_MINUTE=60
 DOCS_ENABLED=false
 ```
-
-## 2. Compose
 
 Save as `docker-compose.traefik.yml` next to the Dockerfile:
 
@@ -69,6 +118,5 @@ docker compose -f docker-compose.traefik.yml up -d --build
 curl -fsS https://search.example.org/api/health
 ```
 
-`TRUST_PROXY=true` is required so the app sees HTTPS and the client IP. The app
-already sends security headers; do not add a second content-security policy on
-the proxy. For one shared rate counter across workers, set `REDIS_URL`.
+Do not add a second Content-Security-Policy on the proxy; the app already sends
+security headers.
