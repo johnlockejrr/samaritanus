@@ -118,7 +118,9 @@ function FilterPanel({ title, children }) {
 
 function FilterTree({ children }) {
   return (
-    <div className="relative ms-2 border-s border-blue-200/90 ps-3">{children}</div>
+    <div className="relative ms-2 border-s border-blue-200/90 ps-3">
+      {children}
+    </div>
   );
 }
 
@@ -292,7 +294,9 @@ export default function App() {
   const total = data?.total ?? 0;
   const pageCount = data?.total_pages ?? 0;
   const terms =
-    params.mode === "lemma" && Array.isArray(data?.terms) && data.terms.length > 0
+    params.mode === "lemma" &&
+    Array.isArray(data?.terms) &&
+    data.terms.length > 0
       ? data.terms
       : null;
   const lemmas = params.mode === "lemma" ? (data?.lemmas ?? []) : [];
@@ -478,9 +482,7 @@ export default function App() {
                             name="strongs"
                             className="mt-1 h-4 w-4 accent-blue-700"
                             checked={params.strongs === lemma.strongs}
-                            onChange={() =>
-                              commit({ strongs: lemma.strongs })
-                            }
+                            onChange={() => commit({ strongs: lemma.strongs })}
                           />
                           <span className="min-w-0 flex-1">
                             <span
@@ -620,8 +622,7 @@ export default function App() {
                   type="checkbox"
                   className="h-4 w-4 accent-blue-700"
                   checked={
-                    catalog.length > 0 &&
-                    selectedBooks.size === catalog.length
+                    catalog.length > 0 && selectedBooks.size === catalog.length
                   }
                   onChange={() => commit({ book: "" })}
                 />

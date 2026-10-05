@@ -44,6 +44,7 @@ _SRC = Path(__file__).resolve().parents[1] / "src"
 if str(_SRC) not in sys.path:
     sys.path.insert(0, str(_SRC))
 from samaritan_aliases import alias_strongs  # noqa: E402
+
 OSIS_NS = {"o": "http://www.bibletechnologies.net/2003/OSIS/namespace"}
 W = "{http://www.bibletechnologies.net/2003/OSIS/namespace}w"
 VERSE = "{http://www.bibletechnologies.net/2003/OSIS/namespace}verse"
