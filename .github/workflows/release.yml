@@ -163,18 +163,16 @@ jobs:
           TAG: ${{ steps.tag.outputs.tag }}
           TARGET_SHA: ${{ github.sha }}
         run: |
-          NOTES="$(cat <<EOF
-## Samaritan Torah Search ${TAG}
-
-### Assets
-- **Web deploy zip** — built SPA + Python API + SQLite index (unzip and run \`./start.sh\` or serve with your process manager)
-- **Windows** — NSIS \`.exe\` installer and/or MSI
-- **Linux** — \`.deb\` and AppImage
-- **Source** — attached automatically by GitHub (\`Source code (zip)\` / tar.gz)
-
-Desktop builds include the search index; no Python required at runtime.
-EOF
-)"
+          NOTES=$(printf '%s\n' \
+            "## Samaritan Torah Search ${TAG}" \
+            "" \
+            "### Assets" \
+            "- **Web deploy zip** — built SPA + Python API + SQLite index (unzip and run \`./start.sh\`)" \
+            "- **Windows** — NSIS \`.exe\` installer and/or MSI" \
+            "- **Linux** — \`.deb\` and AppImage" \
+            "- **Source** — attached automatically by GitHub (\`Source code (zip)\` / tar.gz)" \
+            "" \
+            "Desktop builds include the search index; no Python required at runtime.")
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" dist-assets/* --clobber
           else
