@@ -85,6 +85,22 @@ API, and prebuilt index. Unzip on the server, `pip install -r requirements.txt`,
 then `./start.sh`. See `DEPLOY.md` inside the zip. Options: `--skip-frontend`,
 `--force-index`.
 
+## GitHub Releases (web zip + Windows + Linux)
+
+Push a version tag to build everything and attach it under
+[Releases](https://github.com/johnlockejrr/samaritanus/releases):
+
+```bash
+# bump version in package.json / rust-app package + tauri.conf if needed, then:
+git tag v0.2.1
+git push origin v0.2.1
+```
+
+Or: Actions → **Release** → Run workflow → enter `v0.2.1`.
+
+Each release includes the web deploy zip, Windows NSIS/MSI, Linux `.deb`/AppImage,
+plus GitHub’s automatic Source code zip/tar.gz.
+
 ## Tests
 
 ```bash

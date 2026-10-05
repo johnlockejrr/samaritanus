@@ -46,15 +46,16 @@ The search index is already at `src-tauri/resources/samaritanus.db` in the repo.
 npm run tauri:dev
 ```
 
-## Build a Windows installer
-
-On a Windows machine (or CI with a Windows runner):
+## Build installers
 
 ```bash
 npm run tauri:build
 ```
 
-Artifacts land under `src-tauri/target/release/bundle/` (MSI / NSIS).
+- **Windows:** MSI + NSIS under `target/release/bundle/`
+- **Linux:** `.deb` + AppImage (needs WebKitGTK; see Tauri Linux prerequisites)
+
+CI publishes both platforms when you push a `v*` tag (see root README).
 
 ## Override the index path
 
