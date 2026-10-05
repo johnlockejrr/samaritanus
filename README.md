@@ -16,11 +16,10 @@ pip install -r requirements.txt
 ./dev.sh
 ```
 
-Open http://127.0.0.1:5173. The first run downloads
-[Open Scriptures Hebrew Bible](https://github.com/openscriptures/morphhb)
-morphology and [Strong's Hebrew](https://github.com/openscriptures/strongs),
-then builds `data/samaritanus.db`. Ctrl-C stops both processes.
-`npm start` runs the same script.
+Open http://127.0.0.1:5173. The repo includes a prebuilt
+`data/samaritanus.db`; `./dev.sh` rebuilds it only if missing (or use
+`python3 scripts/ensure_index.py --force` to regenerate from OSHB/Strong's).
+Ctrl-C stops both processes. `npm start` runs the same script.
 
 ## Production
 
@@ -99,7 +98,7 @@ npm test
 ```
 src/         FastAPI (backend.py), SQLite search (search.py), React UI
 scripts/     build_index.py, ensure_index.py
-data/        verses.ndjson (+ samaritanus.db after first build)
+data/        verses.ndjson + prebuilt samaritanus.db
 dev.sh       local UI + API together
 start.sh     container entrypoint (API + built SPA)
 ```

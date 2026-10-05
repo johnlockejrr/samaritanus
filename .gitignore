@@ -14,23 +14,22 @@ htmlcov/
 .DS_Store
 .ruff_cache/
 
-# built search index and the morphology download used to build it
-data/samaritanus.db
-data/samaritanus.db-*
+# Morphology/Strong's downloads used to (re)build the index — not the index itself
 data/wlc/
 data/strongs/
+# SQLite WAL/SHM sidecars if the DB is opened locally
+data/samaritanus.db-*
+rust-app/src-tauri/resources/samaritanus.db-*
 
 # release packages
 release/
 
-# desktop (Tauri) build artifacts; index is copied into resources for packaging
+# desktop (Tauri) build artifacts (the bundled DB under resources/ is tracked)
 rust-app/target/
 rust-app/dist/
 rust-app/node_modules/
 rust-app/src-tauri/target/
 rust-app/src-tauri/gen/
-rust-app/src-tauri/resources/samaritanus.db
-rust-app/src-tauri/resources/samaritanus.db-*
 # workspace lockfile is rust-app/Cargo.lock
 rust-app/src-tauri/Cargo.lock
 

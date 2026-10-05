@@ -17,9 +17,10 @@ UI   http://127.0.0.1:5173
 API  http://127.0.0.1:8000/api/health
 ```
 
-The first run downloads Hebrew morphology and builds `data/samaritanus.db`.
-Later runs reuse that file. Node.js 20+ is required; `./dev.sh` runs `npm ci`
-when `node_modules` is missing.
+The repo ships a prebuilt `data/samaritanus.db`. Rebuild with
+`python3 scripts/ensure_index.py --force` if you change the corpus or lemma
+pipeline. Node.js 20+ is required; `./dev.sh` runs `npm ci` when
+`node_modules` is missing.
 
 Search `ברא` with Match set to **Root**.
 

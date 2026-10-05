@@ -34,9 +34,11 @@ cargo test -p search-engine
 ```bash
 cd rust-app
 npm install
-# Refresh the bundled index after rebuilding it in the parent project:
-cp ../data/samaritanus.db src-tauri/resources/samaritanus.db
+# After rebuilding the parent index, refresh the bundled copy:
+#   cp ../data/samaritanus.db src-tauri/resources/samaritanus.db
 ```
+
+The search index is already at `src-tauri/resources/samaritanus.db` in the repo.
 
 ## Develop
 
